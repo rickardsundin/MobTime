@@ -36,6 +36,7 @@ public class MobTime extends Application {
     public void start(Stage stage) {
         try {
             mainStage = stage;
+            mainStage.setMaximized(true);
             InputStream is = getClass().getResourceAsStream("fontawesome-webfont.ttf");
             GlyphFont fa = new FontAwesome(is);
             GlyphFontRegistry.register(fa);
