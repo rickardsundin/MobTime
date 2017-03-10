@@ -64,7 +64,7 @@ public class MobTime extends Application {
 
     private void openMiniTimer() {
         if (miniTimer == null) {
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            Rectangle2D screenBounds = Screen.getPrimary().getBounds();
             miniTimer = new Stage();
             miniTimer.initStyle(StageStyle.TRANSPARENT);
             miniTimer.setX(screenBounds.getMinX() + screenBounds.getWidth() - width);
@@ -113,7 +113,7 @@ public class MobTime extends Application {
     }
 
     private void moveToOtherCorner() {
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        Rectangle2D screenBounds = Screen.getPrimary().getBounds();
         if (isBottomRight) {
             miniTimer.setX(screenBounds.getMinX());
         } else {
