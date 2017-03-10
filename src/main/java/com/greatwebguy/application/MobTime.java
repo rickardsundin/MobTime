@@ -29,7 +29,7 @@ public class MobTime extends Application {
     private Stage miniTimer;
     private Stage mainStage;
     private boolean isBottomRight = true;
-    private int height = 35;
+    private int height = 45;
     private int width = 50;
 
     @Override
@@ -77,6 +77,13 @@ public class MobTime extends Application {
             turn.setAlignment(Pos.CENTER);
             turn.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-size: 10px;");
             turn.textProperty().bind(Settings.instance().userName);
+            Label nextTurn = new Label();
+            nextTurn.setPrefWidth(width);
+            nextTurn.setPrefHeight(height - 25);
+            nextTurn.setTextAlignment(TextAlignment.CENTER);
+            nextTurn.setAlignment(Pos.CENTER);
+            nextTurn.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-size: 10px;");
+            nextTurn.textProperty().bind(Settings.instance().nextUserName);
             Label timer = new Label();
             timer.setPrefWidth(width);
             timer.setPrefHeight(height - 10);
@@ -89,6 +96,7 @@ public class MobTime extends Application {
             box.setAlignment(Pos.CENTER);
             box.getChildren().add(turn);
             box.getChildren().add(timer);
+            box.getChildren().add(nextTurn);
             box.setCenterShape(true);
             final Scene scene = new Scene(box, width, height);
             scene.setFill(Color.TRANSPARENT);

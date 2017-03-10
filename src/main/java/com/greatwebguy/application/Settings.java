@@ -22,11 +22,13 @@ public class Settings {
 	private int startTime = DEFAULT_START;
 	private LocalTime time;
 	private int currentUser = 0;
+	private int nextUser = 1;
 	
 	protected ObservableList<People> users = FXCollections.observableArrayList();
 	protected StringProperty userMessage = new SimpleStringProperty("");
 	protected StringProperty userName = new SimpleStringProperty("MobTime");
-	
+    protected StringProperty nextUserName = new SimpleStringProperty("");
+
 	private Settings() {
 		//
 	}
@@ -67,7 +69,7 @@ public class Settings {
 	public int getCurrentUser() {
 		return users.size() > 0 ? currentUser:-1;
 	}
-	
+
 	public void incrementCurrentUser() {
 		int potentialUser = getCurrentUser()+1;
 		if(potentialUser == 0) {
@@ -84,12 +86,21 @@ public class Settings {
     		String name = users.get(index).getName();
     		userMessage.set(name +"'s Turn");
     		userName.set(name);
+    		nextUserName.set(">>" + users.get(nextUserIndex(index)).getName());
     	} else {
     		userMessage.set("");
     		userName.set("MobTime");
-    	}
+            nextUserName.set("");
+        }
 	}
-    
+
+    private int nextUserIndex(int index) {
+        if (index > -1) {
+            return (index + 1) % users.size();
+        }
+        return index;
+    }
+
 	public void storeUsers() {
 		String path = getUserStoragePath();
 		try (PrintWriter out = new PrintWriter(path)) {
